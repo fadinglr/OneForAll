@@ -5,7 +5,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/1287668a6b4c72af683e/maintainability)](https://codeclimate.com/github/shmilylty/OneForAll/maintainability)
 [![License](https://img.shields.io/github/license/shmilylty/OneForAll)](https://github.com/shmilylty/OneForAll/tree/master/LICENSE)
 [![python](https://img.shields.io/badge/python-3.6|3.7|3.8-blue)](https://github.com/shmilylty/OneForAll/tree/master/)
-[![python](https://img.shields.io/badge/release-v0.3.0-brightgreen)](https://github.com/shmilylty/OneForAll/releases)
+[![python](https://img.shields.io/badge/release-v0.4.3-brightgreen)](https://github.com/shmilylty/OneForAll/releases)
 
 👊**OneForAll is a powerful subdomain integration tool**  📝[中文文档](https://github.com/shmilylty/OneForAll/tree/master/README.md)
 
@@ -89,8 +89,6 @@ Result will be saved in `~/results`.
 <details>
 <summary><b>✨OneForAll usage</b></summary>
 
-If your computer are not in China, change [setting](https://github.com/shmilylty/OneForAll/blob/master/config/setting.py#L46) `brute_nameservers_path` param `cn_nameservers.txt` to `nameservers.txt` plz.
-
 If you are use pip3, run the following command: 
 
 ```bash
@@ -164,7 +162,7 @@ DESCRIPTION
         python3 oneforall.py --target example.com --alive False run
         python3 oneforall.py --target example.com --brute True run
         python3 oneforall.py --target example.com --port medium run
-        python3 oneforall.py --target example.com --format csv run
+        python3 oneforall.py --target example.com --fmt csv run
         python3 oneforall.py --target example.com --dns False run
         python3 oneforall.py --target example.com --req False run
         python3 oneforall.py --target example.com --takeover False run
@@ -173,7 +171,7 @@ DESCRIPTION
     Note:
         --alive  True/False           Only export alive subdomains or not (default False)
         --port   default/small/large  See details in ./config/setting.py(default port 80)
-        --format csv/json (result format)
+        --fmt csv/json (result format)
         --path   Result directory (default directory is ./results)
 
 ARGUMENTS
@@ -193,7 +191,7 @@ FLAGS
         The port range request to the subdomains (default port 80)
     --alive=ALIVE
         Only export alive subdomains (default False)
-    --format=FORMAT
+    --fmt=FMT
         Result format (default csv)
     --path=PATH
         Result directory (default None)
@@ -236,7 +234,9 @@ At present, OneForAll is under development, there must be a lot of problems and 
 6. Use 6 threat intelligence modules: `alienvault`, `riskiq_ api`, `threatbook_ api`, `threatkeeper `, `virustotal`, `virustotal_ api`, which need to be added and improved.
 7. Use 16 search engines modules: `ask`, `baidu`, `bing`, `bing_api`, `fofa_api`, `gitee`, `github_api`, `google`, `google_api`, `shodan_api`, `so`, `sogou`, `yahoo`, `yandex`, `zoomeye_api`, except for special search engines. General search engines support automatic exclusion of search, full search and recursive search. 
 * **Support subdomain brute force**, can use dictionary mode or custom fuzz mode. Supports bulk brute and recursive brute, and automatically determine wildcard or not and processing.
-* **Support subdmain verification**, default enable, automatically resolve DNS, request subdomain to obtain response, and determine subdomain alive or not.
+* **Support subdomain verification**, default enable, automatically resolve DNS, request subdomain to obtain response, and determine subdomain alive or not.
+* **Support subdomain crawling**, according to the existing subdomains, the response body of the request subdomain and the JS in the response body can be found again from the new subdomain.
+* **Support subdomain replacement**, according to the existing subdomain, use subdomain replacement technology to discover new subdomains again.
 * **Support subdomain takeover**, default enable, supports bulk inspection, and automatic takeover subdomain (only Github, remains to be improved at present).
 * **Powerful processing feature**, support automatic deduplicate, DNS resolve, HTTP request, filter valid subdomains and information for subdomains. Supported export formats: `txt`, `csv`, `json`.
 * **Very fast**, [collection module](https://github.com/shmilylty/OneForAll/tree/master/collect.py) uses multi-threading, [brute module](https://github.com/shmilylty/OneForAll/tree/master/brute.py) uses [MassDNS](https://github.com/blechschmidt/massdns), MassDNS is capable of resolving over 350,000 names per second using publicly available resolvers. DNS resolve and HTTP requests use async-coroutine. [subdomain takeover](https://github.com/shmilylty/OneForAll/tree/master/takeover.py) uses multi-threading.
@@ -270,8 +270,6 @@ The project uses [SemVer](https://semver.org/) for version management, and you c
 ## ⌛Follow-up plan
 
 - [ ] Continuous optimize and improve of each module
-- [x] Subdomain monitoring (mark newly discovered subdomain)
-- [x] Subdomain collection crawler (collect subdomains from static files such as JS)
 - [ ] Implementation of front-end interface for powerful interaction
 
 For more details, read [todo.md](https://github.com/shmilylty/OneForAll/tree/master/docs/todo.md).
